@@ -30,8 +30,8 @@ class NasaService
     {
         $nasaRepo = $this->entityManager->getRepository(NasaObject::class);
         $qb = $nasaRepo->createQueryBuilder('nasa');
-        $qb->orderBy("speed", "DESC")
-            ->andWhere("isHazardous = :isHazardous")
+        $qb->orderBy("nasa.speed", "DESC")
+            ->andWhere("nasa.isHazardous = :isHazardous")
             ->setParameter('isHazardous', $hazardous)
             ->setMaxResults(1)
         ;
