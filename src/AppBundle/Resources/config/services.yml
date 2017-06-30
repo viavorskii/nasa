@@ -1,0 +1,23 @@
+services:
+  app.command.nasa.data.get:
+    class: AppBundle\Command\GetNasaData
+    arguments:
+      - "@doctrine.orm.entity_manager"
+      - "@nasa.client"
+      - "@nasa.object.mapper"
+    tags:
+      - { name: console.command }
+
+  nasa.client:
+    class: AppBundle\Service\NasaClient
+    arguments:
+      - "%nasa.endpoint%"
+      - "%nasa.auth_key%"
+
+  nasa.object.mapper:
+    class: AppBundle\Service\NasaObjectMapper
+
+  nasa.service:
+    class: AppBundle\Service\NasaService
+    arguments:
+      - "@doctrine.orm.entity_manager"
